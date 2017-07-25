@@ -1,0 +1,11 @@
+* longshot then and now
+  longshot is known for a long time, is there some learning? Is it less extreme then before.
+  in horseracing, what about in other sports?
+* reasons for the bias
+  - if a longshot win then in immediate future longshot effect may become more prominent leading
+  to (or contributing) to long shot bias.
+* probabilities estimate
+  can probablilities be estimated from the betting odds. what about when bookmakers odds are known.
+* decsion under ambiguity
+  what if bettors use alpha-max-min model instead of risk models?
+ 

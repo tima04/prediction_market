@@ -1,0 +1,5 @@
+* utility function
+  cara(x) = 1 - exp(-theta * x)
+  I use u(x) = cara(x+1) = 1 - exp(-theta * x) exp(-theta), this is equivalent to cara(x)
+  u has a nice property that u(-1) = 0, this simplify eu and rdu funciton. u(x) is equivalent to 
+  u(x+1) only for cara family (and not for crra), and for pt this might be not the case.

@@ -1,0 +1,52 @@
+* issues
+  some horses (in all files) has average-odds exactly 1, which does not make sense.
+* misc
+**  from: http://www.betfairprotrader.co.uk/p/academic-papers.html 
+ Academic Research
+Here I shall list academic publications that I have read as part of my research. 
+
+Lists of Citations
+
+I present a list of citations of some of the more prolific researchers in sports betting markets and research of some sports models you might wish to trade with.
+
+Edward O. Thorp - champion of Kelly Criterion on the blackjack tables and in financial markets
+
+Exotic Wagering - forecasts, trifectas, exactas and synthetics 
+
+Football - a sport made for in-play trading
+
+Kelly Criterion - maximising the return on your sports trading invesment
+
+Leighton Vaughan Williams - Britain's answer to William Ziemba
+
+Sports Arbitrage - for pure and statistical arbitrage
+
+Tennis - another sport suited to in-play trading
+
+William T. Ziemba - Doctor Z, author of Beat the Racetrack and countless articles on sports betting markets
+
+Betting Market Efficiency
+
+There are a myriad of papers on betting market efficiency and looking for inefficiencies from which to find an edge. I have one from my Alma Mater to start you off. More to come.
+
+Can Punters win? Are UK betting markets on sporting events efficiently aggregating information? - Cadman, Andrew
+
+Optimal Capital Growth (Kelly Criterion)
+
+Make the most of the good-times, maximise your return on investment. Here is John L Kelly's work on information theory that can be applied to the maximisation of the growth of your financial wealth.
+
+Kelly, J. 1956. A New Interpretation of the Information Rate, Bell System Technical Journal 1, 917–926.
+
+Horse Racing
+
+Place pricing models whilst an interesting mathematical diversion are of no use on Betfair though they still might work in pari-mutuel or tote markets.
+
+Harville, D.A. (1973) Assigning probabilities to the outcomes of multi-entry competitions. Journal of the American Statistical Association 68, 312-316
+
+Henery, R.J. (1981) Permutation probabilities as models for horse race. Journal of the Royal Statistical Society B 43, 86-91
+
+Lo, V.S.Y. & Bacon-Shone, J. (2008) Approximating the Ordering Probabilities of Multi-entry Competitions by a Simple Method. Handbook of Sports and Lottery Markets, 51-65. Elsevier
+
+Stern, H.S. (2008) Estimating the Probabilities of the Outcomes of a Horse Race (Alternatives to the Harville Formulas). Efficiency of Racetrack Betting Markets. Hausch, Lo & Ziemba. 225-235.
+
+Stern, H.S. (1990) Models for Distributions on Permutations. Journal of the American Statistical Association 85, No. 410 (June) : 558-564

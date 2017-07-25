@@ -1,0 +1,94 @@
+# Created by https://www.gitignore.io/api/java,emacs
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+### Java ###
+*.class
+*Foo*
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### eclipse ###
+.project
+.classpath
+.gradle
+.settings
+/bin/
+*xmi
+
+### idea ###
+.idea/
+gradle*
+build
+**/.DS_Store
+classes/
+
+*build.gradle* ## Simon does not wants it.
+
+### tag files ###
+GTAGS
+GPATH
+GRTAGS
+
+### directories
+data/
+manuscript/
+papers/
+presentation/
+logs/
+foo/
+bar/
+
+## R
+*.Rhistory
+*.dat
+*.pdf
+*.txt
