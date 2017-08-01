@@ -8,6 +8,7 @@ source("util.R")
 sourceCpp("utils.cpp")
 
 w.prelec <- w_prelec_cpp
+NNODE = 12
     
 solve.ps.pt.pw <- function(a, b, t, Rs, epsilon=10e-100) {
     n <- length(Rs)
@@ -116,7 +117,7 @@ loglike.pt.6par.parallel <- function(a1,a2,b1,b2,t,lambda,dt,cl) {
     rslt
 }
 
-main <- function(NNODE=4) {
+main <- function() {
 
     cl <- makeForkCluster(NNODE)
 
@@ -130,7 +131,6 @@ main <- function(NNODE=4) {
     ##            start=list(a1=0.5,b1=0.5,a2=0.5,b1=0.5,b2=0.5,t=0.5), method="SANN")
     ##out <- mle(minuslogl=function(a,b,t) -loglike.pt(a, b, t, dt), start=list(a=0.5, b=0.5, t=0.5) ,method="L-BFGS-B")
 
-    dt <- dt[1:1000]
     out <- mle(minuslogl=function(a1, a2, b1, b2, t, lambda) -loglike.pt.6par.parallel(a1, a2, b1, b2, t,lambda, dt, cl), start=list(a1=1,a2=1,b1=0.3,b2=0.3,t=-0.072,lambda=1), method="Nelder-Mead")
     try(stopCluster(cl), silent = TRUE)
 
