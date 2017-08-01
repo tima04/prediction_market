@@ -2,6 +2,7 @@ library(data.table)
 library(stats4)
 library(nleqslv)
 library(Rcpp)
+library(parallel)
 
 source("util.R")
 sourceCpp("utils.cpp")
@@ -96,7 +97,8 @@ loglike.pt.6par <- function(a1,a2,b1,b2,t,lambda,dt) {
     rslt
 }
 
-loglike.pt.6par.parallel <- function(a1,a2,b1,b2,t,lambda,dt) { 
+
+loglike.pt.6par.parallel <- function(a1,a2,b1,b2,t,lambda,dt,cl) { 
 
     fun <- function(index) {
         dt <- dt[index]
@@ -114,50 +116,31 @@ loglike.pt.6par.parallel <- function(a1,a2,b1,b2,t,lambda,dt) {
     rslt
 }
 
+main <- function(NNODE=4) {
 
-dt <- as.data.table(as.data.frame(df.salanie))
-##dt <- dt[year==95]
-t0 <- date()
-out <- mle(minuslogl=function(a,b,t) -loglike.pt(a, b, t, dt), start=list(a=1, b=0.318, t=-0.072),
-           method="Nelder-Mead")
-## 5 par
-## out <- mle(minuslogl=function(a1,b1,a2,b2,t) -loglike.pt(a1,b1,a2,b2,t, dt),
-##            start=list(a1=0.5,b1=0.5,a2=0.5,b1=0.5,b2=0.5,t=0.5), method="SANN")
-##out <- mle(minuslogl=function(a,b,t) -loglike.pt(a, b, t, dt), start=list(a=0.5, b=0.5, t=0.5) ,method="L-BFGS-B")
-t1 = date()
-rand <- rbinom(1, 1000, 0.5)
-##typ <- "out-pt-prelec-sann"
-##typ <- "out-pt-pw95-"
-typ <- "out-pt-pw-"
-fl <- paste(typ, rand, ".dat", sep="")
-out <- list("t0" = t0, "t1" = t1, "out" = out)
-save(out, file=fl)
+    cl <- makeForkCluster(NNODE)
 
-##================================ playground
+    dt <- as.data.table(as.data.frame(df.salanie))
+    ##dt <- dt[year==95]
+    t0 <- date()
+    ## out <- mle(minuslogl=function(a,b,t) -loglike.pt(a, b, t, dt), start=list(a=1, b=0.318, t=-0.072),
+    ##            method="Nelder-Mead")
+    ## 5 par
+    ## out <- mle(minuslogl=function(a1,b1,a2,b2,t) -loglike.pt(a1,b1,a2,b2,t, dt),
+    ##            start=list(a1=0.5,b1=0.5,a2=0.5,b1=0.5,b2=0.5,t=0.5), method="SANN")
+    ##out <- mle(minuslogl=function(a,b,t) -loglike.pt(a, b, t, dt), start=list(a=0.5, b=0.5, t=0.5) ,method="L-BFGS-B")
 
-## out-all-like-507.dat	out-full-like-reg-505.dat   out-pt2-power-480.txt	 out-reg2-514.txt
-## out-full2-like-524.dat	out-full-like-reg-505.txt   out-pt2-prelec-531.dat	 out-sal2-510.dat
-## out-full-like-465.dat	out-full-like-sal-506.dat   out-pt2-prelec-531.txt	 out-sal2-510.txt
-## out-full-like-465.txt	out-full-like-sal-506.txt   out-pt2-prelec-lbfg-502.dat
-## out-full-like-476.dat	out-nonmaiden-like-523.dat  out-pt2-prelec-lbfg-502.txt
+    dt <- dt[1:1000]
+    out <- mle(minuslogl=function(a1, a2, b1, b2, t, lambda) -loglike.pt.6par.parallel(a1, a2, b1, b2, t,lambda, dt, cl), start=list(a1=1,a2=1,b1=0.3,b2=0.3,t=-0.072,lambda=1), method="Nelder-Mead")
+    try(stopCluster(cl), silent = TRUE)
 
+    t1 = date()
+    rand <- rbinom(1, 1000, 0.5)
+    ##typ <- "out-pt-prelec-sann"
+    ##typ <- "out-pt-pw95-"
+    typ <- "out-pt-pw-"
+    fl <- paste(typ, rand, ".dat", sep="")
+    out <- list("t0" = t0, "t1" = t1, "out" = out)
+    save(out, file=fl)
+}
 
-## load("logs/out-full-like-reg-505.dat")
-## out.reg <- out
-## load("logs/out-full-like-sal-506.dat")
-## out.sal<- out
-## load("out-full2-like-524.dat")
-## out.pt<- out
-## load("logs/out-pt2-power-480.dat")
-## out.pt.pow <- out
-## load("logs/out-pt2-prelec-531.dat")
-## out.pt.pr <- out
-## load("logs/out-pt2-prelec-lbfg-502.dat")
-## out.pt.pr.lbfg <- out
-
-## summary(out.reg)
-## summary(out.sal)
-## summary(out.pt)
-## summary(out.pt.pow)
-## summary(out.pt.pr)
-## summary(out.pt.pr.lbfg)
